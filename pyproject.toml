@@ -15,7 +15,7 @@ dependencies = [
     "langsmith==0.7.20",
     "pydantic==2.11.7",
     "pyjwt==2.10.1",
-    "pytest==8.4.1",
+    "pytest==9.0.3",
     "python-dotenv==1.1.1",
     "python-multipart==0.0.20",
     "streamlit==1.47.1",
