@@ -137,7 +137,7 @@ Vous devez mettre en place plusieurs chaînes :
 Pattern attendu pour les chaînes structurées :
 
 ```python
-chain = prompt | llm.with_structured_output(MySchema)
+chain = prompt | llm.with_structured_output(MySchema, method="json_schema")
 ```
 
 Chaque chaîne doit être construite de manière simple et modulaire, afin que l'API puisse les invoquer directement.
