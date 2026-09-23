@@ -132,7 +132,7 @@ Vous devez mettre en place plusieurs chaînes :
 - **Chaîne d'analyse de code** : utilise le prompt d'analyse, envoie la requête au LLM, puis structure la réponse.
 - **Chaîne de génération de tests unitaires** : prend en entrée une fonction Python et renvoie un test unitaire en `pytest`.
 - **Chaîne d'explication de tests** : transforme un test Python en une explication claire et pédagogique.
-- **Chaîne de chat libre** : permet une conversation libre avec continuité de contexte.
+- **Agent de chat libre** : un agent avec mémoire (`create_agent` + `checkpointer`, comme au chapitre 4) qui garde le contexte de la conversation.
 
 Pattern attendu pour les chaînes structurées :
 
