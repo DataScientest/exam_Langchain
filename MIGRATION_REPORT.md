@@ -30,6 +30,7 @@ Date : 2026-09-23. Objectif : mêmes versions que le cours (`Learn_Content`, cha
 - `src/api/assistant/requirements.txt`, `src/api/authentification/requirements.txt`, `src/requirements.txt` : mêmes pins.
 - `README.md` : bloc « Versions de référence » et `CHAT_MODEL="groq:openai/gpt-oss-120b"`. `llama-3.3-70b-versatile` a été arrêté par Groq le 2026-08-16. Le texte est identique au chapitre 06 du cours (FR).
 - `README.md` : le pattern de chaîne structurée devient `llm.with_structured_output(MySchema, method="json_schema")`. Avec `gpt-oss-120b` sur Groq, la méthode par défaut (function calling) échoue souvent (`tool_use_failed`). Identique au chapitre 06 du cours.
+- `README.md` : « Chaîne de chat libre » devient « Agent de chat libre » (`create_agent` + `checkpointer`, comme au chapitre 4 du cours).
 - `.env` (placeholders) : `LANGCHAIN_TRACING_V2` / `LANGCHAIN_API_KEY` / `LANGCHAIN_ENDPOINT` remplacés par `LANGSMITH_TRACING` / `LANGSMITH_API_KEY` / `LANGSMITH_PROJECT`, comme dans le README ; ajout de `CHAT_MODEL`.
 
 Livrables d'examen inchangés : mêmes endpoints, même structure, mêmes tests.
@@ -46,4 +47,3 @@ Livrables d'examen inchangés : mêmes endpoints, même structure, mêmes tests.
 
 - pyjwt 2.14 émet `InsecureKeyLengthWarning` si la clé HMAC fait moins de 32 octets. Ce n'est pas bloquant, mais un élève qui choisit une clé courte verra ce warning.
 - `requests` n'est pas dans `src/api/assistant/requirements.txt`, alors que l'API principale en a vraisemblablement besoin pour appeler l'API d'authentification. L'implémentation de référence l'a ajouté dans son Dockerfile. À ajouter au squelette ou à laisser à l'élève : décision pédagogique.
-- Écarts entre l'énoncé et les chapitres 1 à 5 relevés par l'apprenant simulé, antérieurs à cette migration : authentification entre deux services, Docker/Compose/Makefile, historique des endpoints non-chat, pipeline conditionnel, « chaîne de chat libre ».
