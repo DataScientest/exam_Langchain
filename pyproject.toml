@@ -4,9 +4,20 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = "==3.13.*"
-dependencies = [
+dependencies = []
+
+# One dependency group per service. The service requirements.txt files are
+# generated from these groups: run `make requirements` after any change.
+[dependency-groups]
+auth = [
     "fastapi==0.141.1",
-    "httpx==0.28.1",
+    "pydantic==2.13.5",
+    "pyjwt==2.14.0",
+    "python-multipart==0.0.32",
+    "uvicorn==0.53.0",
+]
+assistant = [
+    "fastapi==0.141.1",
     "langchain==1.4.2",
     "langchain-core==1.6.4",
     "langchain-groq==1.1.3",
@@ -15,10 +26,19 @@ dependencies = [
     "langsmith==0.14.0",
     "pydantic==2.13.5",
     "pyjwt==2.14.0",
-    "pytest==9.1.1",
     "python-dotenv==1.2.3",
     "python-multipart==0.0.32",
-    "streamlit==1.64.0",
     "requests==2.34.2",
     "uvicorn==0.53.0",
 ]
+streamlit = [
+    "requests==2.34.2",
+    "streamlit==1.64.0",
+]
+dev = [
+    "httpx==0.28.1",
+    "pytest==9.1.1",
+]
+
+[tool.uv]
+default-groups = "all"

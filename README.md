@@ -71,6 +71,9 @@ exam_Langchain/
 
 L'ensemble des consignes décrites ci-dessous doit être suivi en vous appuyant sur cette structure déjà préparée.
 
+Les dépendances sont déclarées une seule fois dans `pyproject.toml`, avec un groupe par service (`auth`, `assistant`, `streamlit`).
+Les fichiers `requirements.txt` de chaque service en sont générés : si vous ajoutez une dépendance, ajoutez-la au bon groupe, puis lancez `make requirements`.
+
 ### Le LLM (`src/core/llm.py`)
 
 Le coeur de l'assistant repose sur le modèle de langage.
