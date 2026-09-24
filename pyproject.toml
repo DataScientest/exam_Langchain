@@ -4,21 +4,41 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = "==3.13.*"
-dependencies = [
-    "fastapi==0.116.1",
-    "langchain==1.2.12",
-    "langchain-community==0.4.1",
-    "langchain-core==1.2.20",
-    "langchain-groq==1.1.2",
-    "langchain-openai==1.1.11",
-    "langgraph==1.1.3",
-    "langsmith==0.7.20",
-    "pydantic==2.11.7",
-    "pyjwt==2.10.1",
-    "pytest==8.4.1",
-    "python-dotenv==1.1.1",
-    "python-multipart==0.0.20",
-    "streamlit==1.47.1",
-    "requests==2.32.5",
-    "uvicorn==0.35.0",
+dependencies = []
+
+# One dependency group per service. The service requirements.txt files are
+# generated from these groups: run `make requirements` after any change.
+[dependency-groups]
+auth = [
+    "fastapi==0.141.1",
+    "pydantic==2.13.5",
+    "pyjwt==2.14.0",
+    "python-multipart==0.0.32",
+    "uvicorn==0.53.0",
 ]
+assistant = [
+    "fastapi==0.141.1",
+    "langchain==1.4.2",
+    "langchain-core==1.6.4",
+    "langchain-groq==1.1.3",
+    "langchain-openai==1.6.4",
+    "langgraph==1.2.12",
+    "langsmith==0.14.0",
+    "pydantic==2.13.5",
+    "pyjwt==2.14.0",
+    "python-dotenv==1.2.3",
+    "python-multipart==0.0.32",
+    "requests==2.34.2",
+    "uvicorn==0.53.0",
+]
+streamlit = [
+    "requests==2.34.2",
+    "streamlit==1.64.0",
+]
+dev = [
+    "httpx==0.28.1",
+    "pytest==9.1.1",
+]
+
+[tool.uv]
+default-groups = "all"
