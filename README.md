@@ -23,18 +23,17 @@ Ce dépôt sert de squelette : il vous fournit l'architecture de base que vous d
 Pour rester aligné avec le cours, vous pouvez partir sur les versions suivantes :
 
 ```toml
-langchain = "1.2.12"
-langchain-core = "1.2.20"
-langchain-community = "0.4.1"
-langgraph = "1.1.3"
-langsmith = "0.7.20"
-langchain-groq = "1.1.2"
-langchain-openai = "1.1.11"
-fastapi = "0.116.1"
-uvicorn = "0.35.0"
-python-multipart = "0.0.20"
-pydantic = "2.11.7"
-python-dotenv = "1.1.1"
+langchain = "1.4.2"
+langchain-core = "1.6.4"
+langgraph = "1.2.12"
+langsmith = "0.14.0"
+langchain-groq = "1.1.3"
+langchain-openai = "1.6.4"
+fastapi = "0.141.1"
+uvicorn = "0.53.0"
+python-multipart = "0.0.32"
+pydantic = "2.13.5"
+python-dotenv = "1.2.3"
 ```
 
 ## Structure du projet
@@ -72,6 +71,9 @@ exam_Langchain/
 
 L'ensemble des consignes décrites ci-dessous doit être suivi en vous appuyant sur cette structure déjà préparée.
 
+Les dépendances sont déclarées une seule fois dans `pyproject.toml`, avec un groupe par service (`auth`, `assistant`, `streamlit`).
+Les fichiers `requirements.txt` de chaque service en sont générés : si vous ajoutez une dépendance, ajoutez-la au bon groupe, puis lancez `make requirements`.
+
 ### Le LLM (`src/core/llm.py`)
 
 Le coeur de l'assistant repose sur le modèle de langage.
@@ -86,7 +88,7 @@ Exemple de variables d'environnement :
 
 ```env
 GROQ_API_KEY="your_api_key"
-CHAT_MODEL="groq:llama-3.3-70b-versatile"
+CHAT_MODEL="groq:openai/gpt-oss-120b"
 LANGSMITH_TRACING=true
 LANGSMITH_API_KEY=<your_api_key>
 LANGSMITH_PROJECT=exam_langchain
@@ -133,12 +135,12 @@ Vous devez mettre en place plusieurs chaînes :
 - **Chaîne d'analyse de code** : utilise le prompt d'analyse, envoie la requête au LLM, puis structure la réponse.
 - **Chaîne de génération de tests unitaires** : prend en entrée une fonction Python et renvoie un test unitaire en `pytest`.
 - **Chaîne d'explication de tests** : transforme un test Python en une explication claire et pédagogique.
-- **Chaîne de chat libre** : permet une conversation libre avec continuité de contexte.
+- **Agent de chat libre** : un agent avec mémoire (`create_agent` + `checkpointer`, comme au chapitre 4) qui garde le contexte de la conversation.
 
 Pattern attendu pour les chaînes structurées :
 
 ```python
-chain = prompt | llm.with_structured_output(MySchema)
+chain = prompt | llm.with_structured_output(MySchema, method="json_schema")
 ```
 
 Chaque chaîne doit être construite de manière simple et modulaire, afin que l'API puisse les invoquer directement.
